@@ -60,12 +60,13 @@ def load_data(city, month, day):
 
     if 'Start Time' in df:
         # Filter with month.
+        startTimeCsv = pd.to_datetime(df['Start Time'])
         if month.lower() != 'all':
-            df = df[pd.to_datetime(df['Start Time']).dt.month_name() == month.title()]
+            df = df[startTimeCsv.dt.month_name() == month.title()]
 
         # Filter with day.
         if day.lower() != 'all':
-            df = df[pd.to_datetime(df['Start Time']).dt.day_name() == day.title()]
+            df = df[startTimeCsv.dt.day_name() == day.title()]
 
     return df
 
@@ -77,14 +78,15 @@ def time_stats(df):
     start_time = time.time()
 
     if 'Start Time' in df:
+        startTimeCsv = pd.to_datetime(df['Start Time'])
         # Show the most common month.
-        print('\nThe most common month: ' + pd.to_datetime(df['Start Time']).dt.month_name().mode()[0])
+        print('\nThe most common month: ' + startTimeCsv.dt.month_name().mode()[0])
 
         # Show the most common day of week.
-        print('\nThe most common day of week: ' + pd.to_datetime(df['Start Time']).dt.day_name().mode()[0])
+        print('\nThe most common day of week: ' + startTimeCsv.dt.day_name().mode()[0])
 
         # Show the most common start hour.
-        print('\nThe most common start hour: ' + str(pd.to_datetime(df['Start Time']).dt.hour.mode()[0]) + '\n')
+        print('\nThe most common start hour: ' + str(startTimeCsv.dt.hour.mode()[0]) + '\n')
     else:
         print('\nNot exist Start Time in file.')
 
