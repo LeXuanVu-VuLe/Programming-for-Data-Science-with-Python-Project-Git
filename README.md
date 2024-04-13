@@ -1,3 +1,6 @@
 # Programming-for-Data-Science-with-Python-Project-Git
 
-Improve Documentation Task C
+2. Improve Documentation - Task C
+
+3. Additional Changes to Documentation
+   - To create a new branch in Git and switch to that branch, we can use the "git checkout -b 'new_branch'" command.
